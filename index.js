@@ -64,6 +64,6 @@ app.get('/show/:id',async(req,res)=>{
   res.render("layouts/show.ejs",{products});
 })
 
-app.get("layouts/about_us.ejs",(req,res)=>{
+app.get("/about_us",(req,res)=>{
   res.render("layouts/about_us.ejs");
 })
