@@ -10,7 +10,7 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 const Product = require("./models/product.js");
-const port = 3000;
+const port = process.env.PORT || 3000;
 //adding mongo db
 main().then((res) => {
   console.log("connect to db");
@@ -19,15 +19,12 @@ main().then((res) => {
     console.log(err);
   })
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/crunchyHub');
+  const dbURI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/crunchyHub';
+  await mongoose.connect(dbURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
 }
-
-
-
-
-
-
-
 
 app.listen(port, () => {
   console.log("app ");
