@@ -42,6 +42,7 @@ app.post('/home', async (req, res) => {
   const data = req.body;
   data.txt = data.txt.toUpperCase();
   const products = await Product.find({});
+  console.log(products);
   res.render("layouts/home.ejs", { data, products });
 });
 
